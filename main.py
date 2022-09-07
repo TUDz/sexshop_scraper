@@ -26,15 +26,11 @@ def run():
                 
                 if sel.xpath('//a[contains(@class, "next")]'):
                     next_page_link = sel.xpath('//a[contains(@class, "next")]/@href').extract_first()
-                    print(next_page_link)
                     res = requests.get(next_page_link, headers=HEADERS)
                     sel = Selector(text=res.text)
                 else:
                     flag = False
         
-    print(len(url_list))
-    print(url_list)
-
     for url in url_list:
         print(f'Scrapped URL -> {url}')
         tmp_url = requests.get(url, headers=HEADERS)
